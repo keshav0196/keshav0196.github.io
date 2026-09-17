@@ -1,101 +1,695 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Keshav Bhardwaj - CV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Keshav Bhardwaj | Portfolio</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            background: #f4f6f8;
-            color: #222;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080b14;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: #6c63ff;
+            filter: blur(180px);
+            opacity: 0.25;
+            top: -150px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            background: #00d4ff;
+            filter: blur(180px);
+            opacity: 0.15;
+            right: -150px;
+            bottom: -100px;
+            z-index: -1;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 11, 20, 0.7);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8c7cff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #8c7cff;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 10% 60px;
+            gap: 50px;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .hello {
+            color: #8c7cff;
+            font-size: 18px;
+            margin-bottom: 15px;
         }
 
         h1 {
-            margin-bottom: 5px;
+            font-size: clamp(45px, 7vw, 85px);
+            line-height: 1;
+            margin-bottom: 20px;
         }
 
-        h2 {
-            border-bottom: 2px solid #222;
-            padding-bottom: 5px;
-            margin-top: 30px;
+        .gradient {
+            background: linear-gradient(90deg, #8c7cff, #00d4ff);
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
-        .contact {
-            color: #555;
+        .typing {
+            font-size: 25px;
+            color: #aaa;
+            margin-bottom: 30px;
+            min-height: 35px;
         }
 
-        ul {
+        .description {
+            color: #999;
             line-height: 1.8;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            border: 1px solid #555;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #6c63ff, #00bfff);
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(108,99,255,0.3);
+        }
+
+        /* PROFILE IMAGE */
+
+        .profile {
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(135deg, #8c7cff, #00d4ff);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid #080b14;
+        }
+
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-size: 42px;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: #8c7cff;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #8c7cff;
+            box-shadow: 0 15px 40px rgba(108,99,255,0.15);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #8c7cff;
+        }
+
+        .card p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        /* SKILLS */
+
+        .skill {
+            margin-bottom: 25px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .bar {
+            height: 8px;
+            background: #222634;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #6c63ff, #00d4ff);
+            border-radius: 10px;
+            transition: width 1.5s ease;
+        }
+
+        /* CONTACT */
+
+        .contact-box {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .contact-box p {
+            color: #aaa;
+            margin: 15px 0 30px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 800px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 150px;
+            }
+
+            .profile {
+                width: 230px;
+                height: 230px;
+            }
+
+            .buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            section {
+                padding: 70px 7%;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
+    <!-- NAVIGATION -->
 
-    <h1>Keshav Bhardwaj</h1>
+    <nav>
+        <div class="logo">KB.</div>
 
-    <p class="contact">
-        Computer Science Engineering Student |
-        Email: your-email@example.com
-    </p>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <h2>About Me</h2>
 
-    <p>
-        I am a Computer Science Engineering student interested in
-        programming, web development and technology.
-    </p>
+    <!-- HERO -->
 
-    <h2>Education</h2>
+    <section class="hero">
 
-    <p>
-        <b>B.Tech in Computer Science Engineering</b><br>
-        Chitkara University
-    </p>
+        <div class="hero-text">
 
-    <h2>Skills</h2>
+            <div class="hello">HELLO, I'M</div>
 
-    <ul>
-        <li>C Programming</li>
-        <li>Python</li>
-        <li>HTML & CSS</li>
-        <li>Java</li>
-        <li>Git & GitHub</li>
-    </ul>
+            <h1>
+                Keshav<br>
+                <span class="gradient">Bhardwaj</span>
+            </h1>
 
-    <h2>Projects</h2>
+            <div class="typing" id="typing"></div>
 
-    <ul>
-        <li>Fashion Store Website</li>
-        <li>Personal Portfolio</li>
-        <li>Academic Projects</li>
-    </ul>
+            <p class="description">
+                Computer Science Engineering student passionate about
+                programming, web development, technology and building
+                creative digital experiences.
+            </p>
 
-    <h2>Achievements</h2>
+            <div class="buttons">
 
-    <ul>
-        <li>Participated in research and hackathon activities</li>
-        <li>Student exchange program</li>
-    </ul>
+                <a href="#projects" class="btn btn-primary">
+                    View Projects
+                </a>
 
-    <h2>Contact</h2>
+                <a href="#contact" class="btn">
+                    Contact Me
+                </a>
 
-    <p>
-        Email: your-email@example.com
-    </p>
+            </div>
 
-</div>
+        </div>
+
+
+        <!-- PROFILE PHOTO -->
+
+        <div class="profile">
+
+            <img src="profile.jpg" alt="Keshav Bhardwaj">
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <h2 class="section-title">
+            About <span>Me</span>
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🎓 Education</h3>
+
+                <p>
+                    B.Tech in Computer Science Engineering
+                    at Chitkara University.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>💻 Interests</h3>
+
+                <p>
+                    Web Development, Programming,
+                    Software Development and emerging technologies.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🚀 Goal</h3>
+
+                <p>
+                    To continuously learn new technologies
+                    and build meaningful digital solutions.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+
+    <section id="skills">
+
+        <h2 class="section-title">
+            My <span>Skills</span>
+        </h2>
+
+        <div class="skill">
+
+            <div class="skill-name">
+                <span>HTML</span>
+                <span>90%</span>
+            </div>
+
+            <div class="bar">
+                <div class="progress" data-width="90%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-name">
+                <span>CSS</span>
+                <span>85%</span>
+            </div>
+
+            <div class="bar">
+                <div class="progress" data-width="85%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-name">
+                <span>JavaScript</span>
+                <span>75%</span>
+            </div>
+
+            <div class="bar">
+                <div class="progress" data-width="75%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-name">
+                <span>Python</span>
+                <span>80%</span>
+            </div>
+
+            <div class="bar">
+                <div class="progress" data-width="80%"></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-name">
+                <span>C Programming</span>
+                <span>85%</span>
+            </div>
+
+            <div class="bar">
+                <div class="progress" data-width="85%"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+
+        <h2 class="section-title">
+            Featured <span>Projects</span>
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>🛍️ Fashion Store</h3>
+
+                <p>
+                    A modern fashion store website developed
+                    using HTML, CSS and JavaScript.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>🌐 Personal Portfolio</h3>
+
+                <p>
+                    A responsive personal portfolio website
+                    showcasing skills, projects and achievements.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>💡 Academic Projects</h3>
+
+                <p>
+                    Various programming and computer science
+                    projects developed during my studies.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <div class="contact-box">
+
+            <h2 class="section-title">
+                Let's <span>Connect</span>
+            </h2>
+
+            <p>
+                Interested in technology, programming or collaboration?
+                Feel free to connect with me.
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    href="mailto:YOUR_EMAIL@gmail.com"
+                    class="btn btn-primary">
+                    Email Me
+                </a>
+
+                <a
+                    href="https://github.com/keshav0196"
+                    target="_blank"
+                    class="btn">
+                    GitHub
+                </a>
+
+                <a
+                    href="YOUR_LINKEDIN_URL"
+                    target="_blank"
+                    class="btn">
+                    LinkedIn
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026 Keshav Bhardwaj • Built with HTML, CSS & JavaScript
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        /* Typing animation */
+
+        const text = [
+            "Computer Science Student",
+            "Web Developer",
+            "Programmer",
+            "Tech Enthusiast"
+        ];
+
+        let textIndex = 0;
+        let charIndex = 0;
+
+        function typeEffect() {
+
+            if (charIndex < text[textIndex].length) {
+
+                document.getElementById("typing").textContent +=
+                    text[textIndex].charAt(charIndex);
+
+                charIndex++;
+
+                setTimeout(typeEffect, 80);
+
+            } else {
+
+                setTimeout(deleteEffect, 1500);
+
+            }
+        }
+
+
+        function deleteEffect() {
+
+            const typing = document.getElementById("typing");
+
+            if (charIndex > 0) {
+
+                typing.textContent =
+                    text[textIndex].substring(0, charIndex - 1);
+
+                charIndex--;
+
+                setTimeout(deleteEffect, 40);
+
+            } else {
+
+                textIndex = (textIndex + 1) % text.length;
+
+                setTimeout(typeEffect, 300);
+
+            }
+        }
+
+
+        typeEffect();
+
+
+        /* Animated skill bars */
+
+        const skills = document.querySelectorAll(".progress");
+
+        const observer = new IntersectionObserver(entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.width =
+                        entry.target.dataset.width;
+
+                }
+
+            });
+
+        });
+
+
+        skills.forEach(skill => observer.observe(skill));
+
+    </script>
 
 </body>
+
 </html>
